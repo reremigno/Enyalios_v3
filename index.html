@@ -1941,7 +1941,7 @@ body[data-projection] #bestiaire-sat{display:none}
 </style>
 </head>
 <body>
-<div id="bandeau-sauvegarde" style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;padding:5px 18px;background:#3A2A12;border-bottom:1px solid #C9A227;font:13px Alegreya,Georgia,serif;color:#E9E0CE"><b style="letter-spacing:.2em;color:#C9A227;font-weight:500">ΑΝΤΙΓΡΑΦΟΝ</b><span><i>(antigraphon, la copie)</i> — version de test du 30 octobre 2026 (console v265), gardée dans ce navigateur. <span style="letter-spacing:.15em;color:#C9A227">ΠΕΡΙΠΟΛΟΙ</span> : la fenêtre du vidéoprojecteur.</span><button onclick="if(confirm('Revenir au début de la campagne ? Tout ce qui a été fait dans ce navigateur sera effacé.'))__revenirAuDepart()" style="margin-left:auto;font:inherit;color:#E9E0CE;background:none;border:1px solid #6B5530;padding:2px 10px;cursor:pointer">Revenir au début</button></div><style>body[data-joueur] #bandeau-sauvegarde{display:none!important}</style>
+<div id="bandeau-sauvegarde" style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;padding:5px 18px;background:#3A2A12;border-bottom:1px solid #C9A227;font:13px Alegreya,Georgia,serif;color:#E9E0CE"><b style="letter-spacing:.2em;color:#C9A227;font-weight:500">ΑΝΤΙΓΡΑΦΟΝ</b><span><i>(antigraphon, la copie)</i> — version de test du 30 octobre 2026 (console v267), gardée dans ce navigateur. <span style="letter-spacing:.15em;color:#C9A227">ΠΕΡΙΠΟΛΟΙ</span> : la fenêtre du vidéoprojecteur.</span><button onclick="if(confirm('Revenir au début de la campagne ? Tout ce qui a été fait dans ce navigateur sera effacé.'))__revenirAuDepart()" style="margin-left:auto;font:inherit;color:#E9E0CE;background:none;border:1px solid #6B5530;padding:2px 10px;cursor:pointer">Revenir au début</button></div><style>body[data-joueur] #bandeau-sauvegarde{display:none!important}</style>
 <header>
   <div class="titre"><span class="embleme" aria-hidden="true"></span><div class="titre-nom" id="titre-cite" role="button" tabindex="0" title="La cité : où, quand">Alexandrie de l'Oxus<small id="annee">printemps, an 320</small></div><span class="titre-btns"><button class="pill btn-raz mj-calage" id="btn-raz" title="Remettre la campagne au départ du jeu. L'Épos et le parchemin sont effacés ; les fiches, les patrouilleurs et les images restent.">Réinitialiser</button></span></div>
   <div class="tableau-cite">
@@ -5798,9 +5798,9 @@ const SEUIL_STELE=`<div class="st-seuil">
   <p class="st-gr-tr">(Ô xeine, stèthi kai anagnôthi — Étranger, arrête-toi et lis)</p>
   <p class="ep-vers st-adresse">Toi qui passes sur la route de la porte, arrête-toi.<br>Ceux qui dorment ici ont tenu le rempart d'Alexandrie de l'Oxus.<br>Va dire aux vivants, à Bactres et jusqu'en Macédoine,<br>que nous gisons ici, fidèles au serment de la fondation.</p>
   <div class="st-incipit">
-    <p>Trois ans avaient passé depuis la mort d'Alexandre à Babylone, en 323. Ses généraux se disputaient l'empire, loin de nous. Perdiccas, le régent, celui qui avait fait massacrer nos frères révoltés des hautes satrapies, fut tué en Égypte par ses propres officiers. Puis, à Triparadisos, en Syrie, les vainqueurs se partagèrent de nouveau les satrapies, et nommèrent Antipater régent des deux rois.</p>
+    <p>Trois ans avaient passé depuis que le roi Alexandre était mort à Babylone, au mois de Daisios. Ses généraux se disputaient l'empire, loin de nous. Perdiccas, le régent, celui qui avait fait massacrer nos frères révoltés des hautes satrapies, fut tué en Égypte par ses propres officiers. Puis, à Triparadisos, en Syrie, les vainqueurs se partagèrent de nouveau les satrapies, et nommèrent Antipater régent des deux rois.</p>
     <p>Personne, là-bas, ne pensait plus à Alexandrie de l'Oxus. La ville que le roi avait fondée sur le fleuve avait un rempart achevé et un damier presque vide. Hors les murs, la nécropole comptait plus de morts que la cité de vivants. Au nord, au-delà de l'Oxus, chevauchaient les Scythes ; au sud se dressaient les montagnes des Paropamisades ; à l'ouest, Bactres attendait son satrape.</p>
-    <p>Nous étions quelques familles, restées quand les autres étaient parties. Au printemps de l'an 320, nous avons décidé de relever la ville.</p>
+    <p>Nous étions quelques familles, restées quand les autres étaient parties. Au printemps de la troisième année du roi Philippe, au mois de Xandikos, nous avons décidé de relever la ville.</p>
   </div>
 </div>`;
 /* la voix de l'hérôon : l'Oracle écrit, le Mnémon corrige */
@@ -10181,10 +10181,9 @@ ouvrirDaimonLu=id=>steleDaimon(id,true);
 <style>
 /* v265 : Premiers pas ; le bouton « montrer » ne paraît plus que pour rendre la main */
 #btn-montrer:not(.montre){display:none!important}
-#btn-premiers{margin-left:auto;display:flex;flex-direction:column;align-items:center;justify-content:center}
-#btn-premiers+#btn-montrer{margin-left:10px}
-html body nav.echelles #btn-premiers .gr{font-size:15px;letter-spacing:.14em;color:var(--or)}
-html body nav.echelles #btn-premiers .gr-tr{font-family:var(--serif);font-style:italic;font-weight:400;font-size:12.5px;letter-spacing:0;text-transform:none;opacity:.85}
+html body>header>.titre .titre-btns:is(.titre-btns,#_n#_n#_n){grid-template-columns:auto auto auto}
+html body>header>.titre .titre-btns #btn-premiers{grid-row:1;grid-column:3;font-size:10.5px!important;padding:2px 9px!important;color:var(--or)!important;border-color:var(--or)!important;letter-spacing:.04em}
+html body>header>.titre .titre-btns #btn-premiers:hover{background:var(--or);color:#14110D!important}
 body[data-projection] #btn-premiers{display:none!important}
 dialog.stele.stele-pj.stele-pp{width:min(980px,96vw);max-width:none}
 .stele-pp .st-texte{text-align:left}
@@ -10233,14 +10232,12 @@ dialog.stele.stele-pj.stele-pp{width:min(980px,96vw);max-width:none}
 <script>
 /* v265 : Premiers pas — la démarche, les menus, la première séance */
 (function(){
-  const nav=document.querySelector("nav.echelles"), bm=document.getElementById("btn-montrer");
-  if(nav&&!document.getElementById("btn-premiers")){
-    const b=document.createElement("button"); b.id="btn-premiers"; b.className="mj-calage"; b.type="button";
+  const estJoueur=(typeof joueur!=="undefined"&&joueur)||document.body.hasAttribute("data-projection");
+  const poserBouton=()=>{ const boite=document.querySelector("header .titre .titre-btns"); if(!boite||document.getElementById("btn-premiers")) return;
+    const b=document.createElement("button"); b.id="btn-premiers"; b.className="pill mj-calage"; b.type="button";
     b.title="Premiers pas : la démarche de la campagne, les menus de la console, la première séance";
-    b.innerHTML=`<span class="gr">ΑΡΧΗ</span><span class="gr-tr">(archê, premiers pas)</span>`;
-    b.onclick=()=>premiersPas();
-    bm&&bm.parentNode===nav?nav.insertBefore(b,bm):nav.appendChild(b);
-  }
+    b.textContent="Premiers pas"; b.onclick=()=>premiersPas(); boite.appendChild(b); };
+  if(!estJoueur){ poserBouton(); try{ const rC=rendreCite; rendreCite=function(){ const r=rC.apply(this,arguments); try{ poserBouton(); }catch(e){} return r; }; }catch(e){} }
   const aller=v=>{ const t=document.querySelector(`nav.echelles [data-vue="${v}"]`); if(t) t.click(); scrollTo({top:0,behavior:"smooth"}); };
   const eclairer=el=>{ if(!el) return; el.scrollIntoView({behavior:"smooth",block:"center"}); el.classList.add("pp-eclaire"); setTimeout(()=>el.classList.remove("pp-eclaire"),4000); };
   const ACTIONS={
@@ -10264,7 +10261,9 @@ dialog.stele.stele-pj.stele-pp{width:min(980px,96vw);max-width:none}
   {gr:"ΥΠΟΘΕΣΙΣ",tr:"hypothesis, le sujet",html:`
     <p class="pp-chapeau">Vers 321 avant notre ère, au bord de l'Oxus, une Alexandrie fondée par le conquérant reste inachevée. Le rempart est debout, mais l'herbe pousse sur le damier des rues. Les joueurs incarnent les restés, une poignée de colons qui décident de relever la ville.</p>
     <div class="pp-auteur">
-      <p>Je suis parti d'<i>Oltréé !</i> de Le Grümph : une patrouille, un fortin en ruine à rebâtir, une région sauvage à tenir. J'ai voulu y mettre ce que j'enseigne : un moment réel de l'histoire, la Bactriane au lendemain de la mort d'Alexandre, quand ses généraux se déchirent l'empire et que les sources se taisent sur ce bout du monde grec.</p>
+      <p>Ce jeu mêle mes trois passions : le jeu de plateau, le jeu vidéo et le jeu de rôle. Je suis parti d'<i>Oltréé !</i>, le jeu de rôle de Le Grümph, et d'<i>Oltréé</i>, le jeu de plateau d'Antoine Bauza tiré du même univers : une patrouille, un fortin en ruine à rebâtir, une région sauvage à tenir. Des jeux de gestion sur ordinateur viennent la cité qu'on bâtit pierre à pierre et la carte qui sort du brouillard ; du jeu de rôle, la voix, les choix et les personnages.</p>
+      <p>J'ai voulu y mettre ce que j'enseigne : un moment réel de l'histoire, la Bactriane au lendemain de la mort d'Alexandre, quand ses généraux se déchirent l'empire et que les sources se taisent sur ce bout du monde grec.</p>
+      <p>J'ai aussi été archéologue. J'ai fouillé Séleucie et Apamée sur l'Euphrate, les deux villes que reliait le seul pont sur le fleuve, et que l'on connaît pour cela sous le nom de Zeugma, « le pont ». Apamée surtout m'a nourri : pillée par les Parthes puis abandonnée, elle garde son rempart intact autour d'îlots en damier restés vides. C'est elle qu'on retrouve dans Alexandrie de l'Oxus.</p>
       <p>L'histoire connue ne change pas. Les joueurs agissent dans ses silences, et la campagne pose une seule question : ce cri de guerre, <i>Ényalios !</i>, suffira-t-il le jour où la steppe frappera à la porte, ou la cité aura-t-elle appris autre chose que la guerre ?</p>
       <p class="pp-sig">Aurélien, l'auteur</p>
     </div>
@@ -10332,14 +10331,16 @@ dialog.stele.stele-pj.stele-pp{width:min(980px,96vw);max-width:none}
     c.innerHTML=`<div class="pp-onglets" role="tablist">${VOLETS.map((v,i)=>`<button role="tab" data-v="${i}" aria-selected="false"><span class="gr">${v.gr}</span><span class="gr-tr">${v.tr}</span></button>`).join("")}</div>
       ${VOLETS.map((v,i)=>`<div class="pp-volet" data-v="${i}" hidden>${v.html}</div>`).join("")}
       ${window.PP_EXTRA}
-      <p class="pp-pied">Ce guide se rouvre à tout moment par ΑΡΧΗ, au bout de la barre des onglets.</p>`;
+      <p class="pp-pied">Ce guide se rouvre à tout moment par « Premiers pas », en haut, sous le nom de la cité.</p>`;
     const choisir=i=>{ c.querySelectorAll(".pp-onglets button").forEach(b=>b.setAttribute("aria-selected",b.dataset.v==i)); c.querySelectorAll(".pp-volet").forEach(p=>p.hidden=p.dataset.v!=i); try{ localStorage.setItem("alexandrie-pp-volet",i); }catch(e){} };
     c.querySelectorAll(".pp-onglets button").forEach(b=>b.onclick=()=>choisir(b.dataset.v));
     let v0=volet; if(v0==null){ try{ v0=localStorage.getItem("alexandrie-pp-volet"); }catch(e){} } choisir(v0!=null&&VOLETS[v0]?v0:0);
-    stelePJ({grec:"ΑΡΧΗ",titre:"Premiers pas",sous:"pour le Mnémon qui découvre Alexandrie de l'Oxus",corps:c,fermer:()=>{ try{ window.ppFerme&&window.ppFerme(); }catch(e){} }});
+    stelePJ({grec:"ΑΡΧΗ",titre:"Premiers pas",sous:"pour le Mnémon qui découvre Alexandrie de l'Oxus",corps:c,fermer:()=>{ try{ localStorage.setItem(window.PP_CLE||"alexandrie-premiers","1"); }catch(e){} }});
     const dlg=c.closest("dialog"); if(dlg) dlg.classList.add("stele-pp");
     c.querySelectorAll("[data-pp]").forEach(b=>b.onclick=()=>{ const k=b.dataset.pp; if(dlg) dlg.close(); setTimeout(()=>{ try{ ACTIONS[k]&&ACTIONS[k](); }catch(e){ console.log(e); } },200); });
   };
+  if(!estJoueur) setTimeout(()=>{ let vu=null; try{ vu=localStorage.getItem(window.PP_CLE||"alexandrie-premiers"); }catch(e){ vu="1"; }
+    if(!vu&&!document.querySelector("dialog[open]")) window.premiersPas(0); },1800);
 })();
 </script>
 
@@ -12788,8 +12789,7 @@ var qrcode = function() {
 
   /* 7. premiers pas : le guide est celui de la console ; on y ajoute les PDF et la sauvegarde */
   window.PP_EXTRA=`<div class="pp-livres">${PDF}</div><p class="pp-pied">Tout ce que vous faites reste dans ce navigateur : pensez à « Sauvegarder », dans le bandeau du haut.</p>`;
-  window.ppFerme=()=>lsSet(CLE+"-premiers","1");
-  if(!lsGet(CLE+"-premiers")) setTimeout(()=>{ try{ window.premiersPas(0); }catch(e){} },1500);
+  window.PP_CLE=CLE+"-premiers";
 })();
 </script>
 </body>
