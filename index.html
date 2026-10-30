@@ -1941,7 +1941,7 @@ body[data-projection] #bestiaire-sat{display:none}
 </style>
 </head>
 <body>
-<div id="bandeau-sauvegarde" style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;padding:5px 18px;background:#3A2A12;border-bottom:1px solid #C9A227;font:13px Alegreya,Georgia,serif;color:#E9E0CE"><b style="letter-spacing:.2em;color:#C9A227;font-weight:500">ΑΝΤΙΓΡΑΦΟΝ</b><span><i>(antigraphon, la copie)</i> — version de test du 29 octobre 2026 (console v264), gardée dans ce navigateur. <span style="letter-spacing:.15em;color:#C9A227">ΠΕΡΙΠΟΛΟΙ</span> : la fenêtre du vidéoprojecteur.</span><button onclick="if(confirm('Revenir au début de la campagne ? Tout ce qui a été fait dans ce navigateur sera effacé.'))__revenirAuDepart()" style="margin-left:auto;font:inherit;color:#E9E0CE;background:none;border:1px solid #6B5530;padding:2px 10px;cursor:pointer">Revenir au début</button></div><style>body[data-joueur] #bandeau-sauvegarde{display:none!important}</style>
+<div id="bandeau-sauvegarde" style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;padding:5px 18px;background:#3A2A12;border-bottom:1px solid #C9A227;font:13px Alegreya,Georgia,serif;color:#E9E0CE"><b style="letter-spacing:.2em;color:#C9A227;font-weight:500">ΑΝΤΙΓΡΑΦΟΝ</b><span><i>(antigraphon, la copie)</i> — version de test du 30 octobre 2026 (console v265), gardée dans ce navigateur. <span style="letter-spacing:.15em;color:#C9A227">ΠΕΡΙΠΟΛΟΙ</span> : la fenêtre du vidéoprojecteur.</span><button onclick="if(confirm('Revenir au début de la campagne ? Tout ce qui a été fait dans ce navigateur sera effacé.'))__revenirAuDepart()" style="margin-left:auto;font:inherit;color:#E9E0CE;background:none;border:1px solid #6B5530;padding:2px 10px;cursor:pointer">Revenir au début</button></div><style>body[data-joueur] #bandeau-sauvegarde{display:none!important}</style>
 <header>
   <div class="titre"><span class="embleme" aria-hidden="true"></span><div class="titre-nom" id="titre-cite" role="button" tabindex="0" title="La cité : où, quand">Alexandrie de l'Oxus<small id="annee">printemps, an 320</small></div><span class="titre-btns"><button class="pill btn-raz mj-calage" id="btn-raz" title="Remettre la campagne au départ du jeu. L'Épos et le parchemin sont effacés ; les fiches, les patrouilleurs et les images restent.">Réinitialiser</button></span></div>
   <div class="tableau-cite">
@@ -10178,6 +10178,171 @@ ouvrirDaimon=id=>steleDaimon(id,false);
 ouvrirDaimonLu=id=>steleDaimon(id,true);
 </script>
 
+<style>
+/* v265 : Premiers pas ; le bouton « montrer » ne paraît plus que pour rendre la main */
+#btn-montrer:not(.montre){display:none!important}
+#btn-premiers{margin-left:auto;display:flex;flex-direction:column;align-items:center;justify-content:center}
+#btn-premiers+#btn-montrer{margin-left:10px}
+html body nav.echelles #btn-premiers .gr{font-size:15px;letter-spacing:.14em;color:var(--or)}
+html body nav.echelles #btn-premiers .gr-tr{font-family:var(--serif);font-style:italic;font-weight:400;font-size:12.5px;letter-spacing:0;text-transform:none;opacity:.85}
+body[data-projection] #btn-premiers{display:none!important}
+dialog.stele.stele-pj.stele-pp{width:min(980px,96vw);max-width:none}
+.stele-pp .st-texte{text-align:left}
+.pp-onglets{display:flex;gap:8px;margin:2px 0 16px;flex-wrap:wrap}
+.pp-onglets button{flex:1 1 0;min-width:150px;display:flex;flex-direction:column;align-items:center;gap:1px;padding:7px 10px;cursor:pointer;
+  background:none;border:1px solid var(--bord);color:var(--os-mat);font-family:var(--serif)}
+.pp-onglets button .gr{font-size:14px;letter-spacing:.2em;color:var(--or)}
+.pp-onglets button .gr-tr{font-size:12.5px;font-style:italic;opacity:.85}
+.pp-onglets button[aria-selected="true"]{background:linear-gradient(#8A6A2E,#5E4318);border-color:#C9A227;color:#FFF1C2}
+.pp-onglets button[aria-selected="true"] .gr{color:#FFE7A0}
+.pp-volet[hidden]{display:none}
+.pp-chapeau{font-family:var(--serif);font-size:18px;line-height:1.5;margin:0 0 14px;text-align:center;font-style:italic}
+.pp-auteur{border-left:3px solid var(--or);padding:4px 0 4px 16px;margin:0 0 16px}
+.pp-auteur p{margin:0 0 8px;line-height:1.55}
+.pp-auteur .pp-sig{text-align:right;font-style:italic;margin:0}
+.pp-cartes{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;margin:0 0 16px}
+.pp-carte{border:1px solid var(--bord);padding:10px 12px;background:rgba(201,162,39,.06)}
+.pp-carte h4{margin:0 0 4px;font-family:var(--serif);font-weight:600;font-size:16px}
+.pp-carte h4 .gr{display:block;font-size:12px;letter-spacing:.2em;color:var(--or);font-weight:400}
+.pp-carte p{margin:0;line-height:1.45;font-size:14.5px}
+.pp-table{width:100%;border-collapse:collapse;margin:0 0 6px;font-size:14.5px}
+.pp-table th,.pp-table td{border-bottom:1px solid var(--bord);padding:5px 8px;text-align:left;vertical-align:top}
+.pp-table th{font-family:var(--serif);font-weight:600}
+.pp-h{font-family:var(--serif);font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--or);margin:16px 0 6px;border-bottom:1px solid rgba(201,162,39,.35);padding-bottom:3px}
+.pp-menus{list-style:none;padding:0;margin:0}
+.pp-menus li{display:grid;grid-template-columns:190px 1fr auto;gap:12px;align-items:center;padding:7px 0;border-bottom:1px dotted var(--bord)}
+.pp-menus .pp-nom{font-family:var(--serif);line-height:1.15}
+.pp-menus .pp-nom .gr{display:block;letter-spacing:.14em;color:var(--or);font-size:15px}
+.pp-menus .pp-nom .gr-tr{font-size:12.5px;font-style:italic;opacity:.8}
+.pp-menus p{margin:0;line-height:1.45;font-size:14.5px}
+.pp-menus .pill,.pp-etapes .pill{font-size:12.5px;padding:3px 12px;white-space:nowrap}
+.pp-etapes{list-style:none;padding:0;margin:0;counter-reset:pp}
+.pp-etapes li{counter-increment:pp;display:grid;grid-template-columns:2.2em 1fr auto;gap:12px;align-items:center;padding:8px 0;border-bottom:1px solid rgba(201,162,39,.25)}
+.pp-etapes li::before{content:counter(pp);font-family:var(--serif);font-size:24px;color:var(--or);text-align:center}
+.pp-etapes p{margin:0;line-height:1.45;font-size:14.5px}
+.pp-etapes b{display:block;font-family:var(--serif);font-weight:600;font-size:16.5px}
+.pp-avant{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;margin:0 0 6px}
+.pp-avant div{border:1px solid var(--bord);padding:8px 10px;font-size:14px;line-height:1.4}
+.pp-avant b{font-family:var(--serif);display:block}
+.pp-pied{text-align:center;margin:16px 0 0;font-size:13.5px;opacity:.85}
+.pp-livres{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:14px 0 0}
+.pp-livres a{color:var(--or);border:1px solid var(--or);padding:4px 12px;text-decoration:none;font-family:var(--serif)}
+.pp-eclaire{outline:3px solid #C9A227!important;outline-offset:3px;transition:outline-color .4s}
+@media(max-width:700px){ .pp-menus li{grid-template-columns:1fr auto} .pp-menus li p{grid-column:1/-1;grid-row:2} }
+</style>
+<script>
+/* v265 : Premiers pas — la démarche, les menus, la première séance */
+(function(){
+  const nav=document.querySelector("nav.echelles"), bm=document.getElementById("btn-montrer");
+  if(nav&&!document.getElementById("btn-premiers")){
+    const b=document.createElement("button"); b.id="btn-premiers"; b.className="mj-calage"; b.type="button";
+    b.title="Premiers pas : la démarche de la campagne, les menus de la console, la première séance";
+    b.innerHTML=`<span class="gr">ΑΡΧΗ</span><span class="gr-tr">(archê, premiers pas)</span>`;
+    b.onclick=()=>premiersPas();
+    bm&&bm.parentNode===nav?nav.insertBefore(b,bm):nav.appendChild(b);
+  }
+  const aller=v=>{ const t=document.querySelector(`nav.echelles [data-vue="${v}"]`); if(t) t.click(); scrollTo({top:0,behavior:"smooth"}); };
+  const eclairer=el=>{ if(!el) return; el.scrollIntoView({behavior:"smooth",block:"center"}); el.classList.add("pp-eclaire"); setTimeout(()=>el.classList.remove("pp-eclaire"),4000); };
+  const ACTIONS={
+    calendrier:()=>{ try{ ouvrirCalendrier(); }catch(e){ eclairer(document.getElementById("titre-cite")); } },
+    jauges:()=>eclairer(document.getElementById("jauges")),
+    saison:()=>eclairer(document.getElementById("btn-saison")),
+    peripoloi:()=>eclairer(document.querySelector("#btn-projection")&&document.querySelector("#btn-projection").parentNode),
+    cite:()=>aller("cite"), satrapie:()=>aller("satrapie"), monde:()=>aller("monde"), livres:()=>aller("livres"),
+    eikones:()=>aller("eikones"), epos:()=>aller("epos"),
+    patrouille:()=>{ const t=document.querySelector('aside nav button[data-pan="patrouille"]'); if(t){ t.click(); eclairer(document.getElementById("pan-patrouille")); } },
+    oeil:()=>{ aller("livres"); setTimeout(()=>eclairer(document.querySelector(".vue[data-vue='livres'] .oeil-montrer")),400); },
+    ouverture:()=>{ try{ ouvrirCite(); }catch(e){} },
+    serment:()=>{ try{ constituerPatrouille(); }catch(e){ ACTIONS.patrouille(); } },
+    clio:()=>{ aller("livres"); setTimeout(()=>{ eclairer(document.querySelector(".lv-muses")||document.querySelector(".lv-muse")); },350); },
+    razzia:()=>{ aller("livres"); setTimeout(()=>eclairer(document.querySelector(".lv-attaque")),450); }
+  };
+  const bt=(k,t)=>`<button class="pill" data-pp="${k}">${t}</button>`;
+  const menu=(gr,tr,txt,k,t)=>`<li><span class="pp-nom"><span class="gr">${gr}</span><span class="gr-tr">${tr}</span></span><p>${txt}</p>${k?bt(k,t||"Voir"):"<span></span>"}</li>`;
+
+  const VOLETS=[
+  {gr:"ΥΠΟΘΕΣΙΣ",tr:"hypothesis, le sujet",html:`
+    <p class="pp-chapeau">Vers 321 avant notre ère, au bord de l'Oxus, une Alexandrie fondée par le conquérant reste inachevée. Le rempart est debout, mais l'herbe pousse sur le damier des rues. Les joueurs incarnent les restés, une poignée de colons qui décident de relever la ville.</p>
+    <div class="pp-auteur">
+      <p>Je suis parti d'<i>Oltréé !</i> de Le Grümph : une patrouille, un fortin en ruine à rebâtir, une région sauvage à tenir. J'ai voulu y mettre ce que j'enseigne : un moment réel de l'histoire, la Bactriane au lendemain de la mort d'Alexandre, quand ses généraux se déchirent l'empire et que les sources se taisent sur ce bout du monde grec.</p>
+      <p>L'histoire connue ne change pas. Les joueurs agissent dans ses silences, et la campagne pose une seule question : ce cri de guerre, <i>Ényalios !</i>, suffira-t-il le jour où la steppe frappera à la porte, ou la cité aura-t-elle appris autre chose que la guerre ?</p>
+      <p class="pp-sig">Aurélien, l'auteur</p>
+    </div>
+    <div class="pp-cartes">
+      <div class="pp-carte"><h4><span class="gr">ΑΝΟΙΚΤΟΣ</span>Un monde faussement ouvert</h4><p>Les scénarios sont écrits, mais ils se posent sur une carte libre. Les joueurs choisissent où patrouiller, quoi bâtir, à qui se lier ; la console garde la trace de chaque choix.</p></div>
+      <div class="pp-carte"><h4><span class="gr">ΤΡΙΑ</span>Trois échelles à chaque séance</h4><p>La cité à rebâtir, la satrapie à explorer et à tenir, le monde des Diadoques où l'on choisit ses alliés. Chaque scénario passe par les trois, dans un ordre qui lui est propre.</p></div>
+      <div class="pp-carte"><h4><span class="gr">ΦΩΝΗ ΚΑΙ ΜΝΗΜΗ</span>Le livre parle, la console se souvient</h4><p>Le livre donne la voix : les scènes à lire, les personnages, les trois fins. La console tient la mémoire et l'horloge : la cité, la carte, les puissances, le calendrier, le journal. Rien à calculer de tête.</p></div>
+      <div class="pp-carte"><h4><span class="gr">ΕΙΚΟΝΕΣ</span>Une image pour chaque scène</h4><p>Décrire une cité hellénistique de Bactriane n'a rien d'évident. Chaque lieu, chaque visage, chaque scène a donc son image, à montrer aux joueurs d'un clic, dans l'esprit des planches de <i>La Vie privée des hommes</i>.</p></div>
+      <div class="pp-carte"><h4><span class="gr">ΜΝΗΜΩΝ</span>Le Mnémon arrime</h4><p>Chaque scénario s'ouvre sur une accroche, jamais sur une porte imposée : c'est à vous de l'arrimer à ce que la table a vécu. Le texte écrit prime, puis ce qui est gravé à l'Épos.</p></div>
+      <div class="pp-carte"><h4><span class="gr">ΙΣΤΟΡΙΑ</span>Pour un meneur non historien</h4><p>Le vocabulaire grec est toujours traduit, et les encarts du Mnémon donnent dans les livres le contexte, les usages et les dates utiles. Il n'est pas nécessaire de connaître la période pour la faire vivre.</p></div>
+    </div>
+    <p class="pp-h">La campagne</p>
+    <table class="pp-table"><tr><th>Livre</th><th>La cité</th><th>Les scénarios, nommés d'après les Muses</th></tr>
+      <tr><td>I · Les Restés</td><td>la colonie (<i>katoikia</i>)</td><td>Clio, Euterpe, Thalie</td></tr>
+      <tr><td>II · L'Anneau</td><td>la cité (<i>polis</i>)</td><td>Melpomène, Terpsichore, Érato</td></tr>
+      <tr><td>III · Le Vent du Nord</td><td>la cité-mère (<i>métropolis</i>)</td><td>Polymnie, Uranie, Calliope</td></tr>
+      <tr><td>L'Exodos</td><td colspan="2">le siège final : les murs tiendront, ou tomberont</td></tr></table>
+    <p class="note">Une Muse, c'est une séance de trois heures. Dans un livre, les trois Muses se jouent dans l'ordre que l'on veut ; chaque livre se clôt sur une attaque de la cité.</p>`},
+  {gr:"ΜΝΗΜΗ",tr:"mnêmê, la console",html:`
+    <p class="pp-chapeau">La console est votre écran de meneur. Elle montre tout, secrets compris ; les joueurs, eux, ne voient que ce que la patrouille sait.</p>
+    <p class="pp-h">En haut, le bandeau</p>
+    <ul class="pp-menus">
+      ${menu("La date","le calendrier macédonien","Le mois et l'année du règne. Un clic ouvre le calendrier : les mois macédoniens et la saison en cours.","calendrier","Ouvrir")}
+      ${menu("ΚΛΕΟΣ · ΕΥΣΕΒΕΙΑ · ΝΕΜΕΣΙΣ","les trois jauges","La renommée de la cité, sa piété, et la Némésis : la démesure qui appelle le châtiment et mène aux attaques. À côté, les ressources : vivres, bois, pierre, métaux, chrêmata.","jauges","Montrer")}
+      ${menu("Saison suivante","le temps qui passe","Entre deux scénarios, trois mois passent d'un coup : intendance, garnison, un aléa, une visite, une rumeur. Vous validez ou ignorez chaque ligne avant de la montrer.","saison","Montrer")}
+      ${menu("ΠΕΡΙΠΟΛΟΙ","peripoloi, l'écran des joueurs","Ouvre la fenêtre des joueurs, à faire glisser sur le vidéoprojecteur. Le QR voisin l'ouvre sur leurs téléphones ; ils le rescannent quand la partie a avancé.","peripoloi","Montrer")}
+    </ul>
+    <p class="pp-h">Les onglets</p>
+    <ul class="pp-menus">
+      ${menu("ΠΟΛΙΣ","polis, la cité","Le plan de la ville : les bâtiments à bâtir, améliorer ou démolir, les quartiers à repeupler, les six secteurs du rempart. Chaque bâtiment porte une compétence de la patrouille.","cite")}
+      ${menu("ΣΑΤΡΑΠΕΙΑ","satrapeia, la satrapie","La carte dans son brouillard. Les lieux passent de cachés à rumeurs, repérés puis explorés ; chaque fiche a ses scènes, ses secrets et ses rencontres. Le voyage se règle en un seul jet.","satrapie")}
+      ${menu("ΟΙΚΟΥΜΕΝΗ","oikoumenê, le monde habité","Les puissances : leurs horloges, leur faveur envers la cité (de −3 à +3), les pactes à sceller avec les créatures anciennes.","monde")}
+      ${menu("ΒΙΒΛΟΙ","bibloi, les livres","Les livres et leurs Muses : les scènes à lire et à montrer, les visages, les trois fins, puis l'attaque de fin de livre.","livres")}
+      ${menu("ΕΙΚΟΝΕΣ","eikones, les images","Vos propres images, à garder sous la main et à montrer quand l'histoire le demande.","eikones")}
+      ${menu("ΕΠΟΣ","epos, le récit","Le journal de la campagne. Ce qui n'y est pas gravé n'existera pas sur la stèle des héros.","epos")}
+      ${menu("Patrouille","le volet de droite","Les fiches des patrouilleurs, leur daimôn et leurs technai ; ceux qui ne jouent pas restent en réserve.","patrouille")}
+    </ul>
+    <p class="pp-h">Le geste du Mnémon</p>
+    <ul class="pp-menus">
+      ${menu("L'œil","montrer aux joueurs","Chaque cadre montrable porte un petit œil : une scène, un visage, un lieu, une image. Un clic, et les joueurs le voient. Tant qu'ils regardent, « Rendre la main » paraît dans la barre des onglets.","oeil","Montrer")}
+    </ul>`},
+  {gr:"ΑΡΧΗ",tr:"archê, la première séance",html:`
+    <p class="pp-chapeau">Une soirée de lecture, trois heures de jeu. Voici l'ordre que je vous propose.</p>
+    <p class="pp-h">Avant de jouer</p>
+    <div class="pp-avant">
+      <div><b>Lire</b>le prologue du Livre I et le scénario de Clio.</div>
+      <div><b>Imprimer</b>une fiche par patrouilleur ; des prétirés vous attendent dans le livre.</div>
+      <div><b>Réunir</b>des dés : d4, d6, d8, d10, d12 et un d20.</div>
+      <div><b>Brancher</b>le vidéoprojecteur, ou préparer le QR pour les téléphones.</div>
+    </div>
+    <p class="pp-h">À la table</p>
+    <ol class="pp-etapes">
+      <li><p><b>Installer l'écran des joueurs</b>La fenêtre ΠΕΡΙΠΟΛΟΙ sur le vidéoprojecteur, ou le QR pour les téléphones.</p>${bt("peripoloi","Montrer")}</li>
+      <li><p><b>Lire l'ouverture</b>La cité, le lieu, l'année : ce que l'on dit à la table avant tout le reste.</p>${bt("ouverture","Ouvrir")}</li>
+      <li><p><b>Constituer la patrouille</b>Chaque joueur choisit un patrouilleur et prête serment ; il entre dans l'Épos.</p>${bt("serment","Choisir")}</li>
+      <li><p><b>Jouer Clio</b>Dans ΒΙΒΛΟΙ, « Ouvrir ce scénario » sous la première Muse : son accroche, ses scènes, ses images, ses trois fins. L'œil montre chaque scène.</p>${bt("clio","Y aller")}</li>
+      <li><p><b>Clore et faire passer la saison</b>Les trois questions, l'épigramme de la psychè, puis « Saison suivante ». Les joueurs décident où investir ce qu'ils ont rapporté.</p>${bt("saison","Montrer")}</li>
+      <li><p><b>Au bout des trois Muses, la razzia</b>La fin du Livre I : la cité se défend par vagues, et la patrouille saigne pour elle.</p>${bt("razzia","Y aller")}</li>
+    </ol>`}
+  ];
+
+  window.PP_EXTRA=window.PP_EXTRA||"";
+  window.premiersPas=function(volet){
+    const c=document.createElement("div"); c.className="pp";
+    c.innerHTML=`<div class="pp-onglets" role="tablist">${VOLETS.map((v,i)=>`<button role="tab" data-v="${i}" aria-selected="false"><span class="gr">${v.gr}</span><span class="gr-tr">${v.tr}</span></button>`).join("")}</div>
+      ${VOLETS.map((v,i)=>`<div class="pp-volet" data-v="${i}" hidden>${v.html}</div>`).join("")}
+      ${window.PP_EXTRA}
+      <p class="pp-pied">Ce guide se rouvre à tout moment par ΑΡΧΗ, au bout de la barre des onglets.</p>`;
+    const choisir=i=>{ c.querySelectorAll(".pp-onglets button").forEach(b=>b.setAttribute("aria-selected",b.dataset.v==i)); c.querySelectorAll(".pp-volet").forEach(p=>p.hidden=p.dataset.v!=i); try{ localStorage.setItem("alexandrie-pp-volet",i); }catch(e){} };
+    c.querySelectorAll(".pp-onglets button").forEach(b=>b.onclick=()=>choisir(b.dataset.v));
+    let v0=volet; if(v0==null){ try{ v0=localStorage.getItem("alexandrie-pp-volet"); }catch(e){} } choisir(v0!=null&&VOLETS[v0]?v0:0);
+    stelePJ({grec:"ΑΡΧΗ",titre:"Premiers pas",sous:"pour le Mnémon qui découvre Alexandrie de l'Oxus",corps:c,fermer:()=>{ try{ window.ppFerme&&window.ppFerme(); }catch(e){} }});
+    const dlg=c.closest("dialog"); if(dlg) dlg.classList.add("stele-pp");
+    c.querySelectorAll("[data-pp]").forEach(b=>b.onclick=()=>{ const k=b.dataset.pp; if(dlg) dlg.close(); setTimeout(()=>{ try{ ACTIONS[k]&&ACTIONS[k](); }catch(e){ console.log(e); } },200); });
+  };
+})();
+</script>
+
 <script>//---------------------------------------------------------------------
 //
 // QR Code Generator for JavaScript
@@ -12547,13 +12712,6 @@ var qrcode = function() {
     .lv-pdf{display:flex;flex-wrap:wrap;gap:10px;align-items:center;max-width:1100px;margin:0 0 14px;padding:10px 14px;border:1px solid var(--bord);background:var(--terre2)}
     .lv-pdf a{font-family:var(--serif);color:var(--os);border:1px solid var(--or);padding:4px 12px;text-decoration:none}
     .lv-pdf a:hover{background:rgba(201,162,39,.15)}
-    .pp-etapes{list-style:none;padding:0;margin:8px 0;counter-reset:pp}
-    .pp-etapes li{counter-increment:pp;display:grid;grid-template-columns:2.2em 1fr auto;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid rgba(201,162,39,.25)}
-    .pp-etapes li::before{content:counter(pp);font-family:var(--serif);font-size:22px;color:var(--or);text-align:center}
-    .pp-etapes p{margin:0;line-height:1.4}
-    .pp-etapes b{display:block;font-family:var(--serif);font-weight:500;font-size:17px}
-    .pp-livres{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:12px 0 4px}
-    .pp-livres a{color:var(--or);border:1px solid var(--or);padding:4px 12px;text-decoration:none;font-family:var(--serif)}
     .ek-place{margin:6px 0 12px}
     #etat-instantane{position:fixed;left:0;right:0;bottom:0;z-index:50;background:#3A2A12;color:#E9E0CE;border-top:1px solid #C9A227;font:13px Alegreya,Georgia,serif;padding:5px 12px;text-align:center}
     #etat-instantane b{color:#C9A227;font-weight:500}
@@ -12603,10 +12761,9 @@ var qrcode = function() {
     }catch(e){ console.log(e); } peindreDer(); };
   addEventListener("enyalios-export",peindreDer);
   if(bs){
-    const pp=document.createElement("button"); pp.className="bs-btn"; pp.textContent="Premiers pas"; pp.onclick=()=>premiersPas();
     const sv=document.createElement("button"); sv.className="bs-btn"; sv.textContent="Sauvegarder"; sv.title="Télécharger un fichier de la campagne : ce que vous faites ici ne vit que dans ce navigateur"; sv.onclick=sauver;
     const ref=q&&q.parentElement===bs?q:bs.querySelector("button");
-    [pp,sv,der].forEach(x=>bs.insertBefore(x,ref)); pp.style.marginLeft="auto";
+    [sv,der].forEach(x=>bs.insertBefore(x,ref)); sv.style.marginLeft="auto";
     if(q){ q.style.marginLeft="0"; }
     peindreDer();
   }
@@ -12629,32 +12786,10 @@ var qrcode = function() {
       if(z&&!z.querySelector(".lv-pdf")) z.insertAdjacentHTML("afterbegin",`<div class="lv-pdf mj-seul"><span class="note">Les textes de la campagne :</span>${PDF}</div>`); }catch(e){} return r; };
     try{ rendreLivres(); }catch(e){} }
 
-  /* 7. premiers pas */
-  const aller=v=>{ const b=document.querySelector(`nav.echelles [data-vue="${v}"]`); if(b) b.click(); };
-  function premiersPas(){
-    const c=document.createElement("div"); c.className="pj-pop";
-    c.innerHTML=`<p class="st-ligne">Bienvenue, Mnémon. La console garde la mémoire de la campagne ; les livres donnent la voix. Cinq pas pour commencer :</p>
-      <ol class="pp-etapes">
-        <li><p><b>Lire l'ouverture</b>La cité, le lieu et l'année : ce que vous lirez à la table avant tout.</p><button class="pill" data-pp="1">Ouvrir</button></li>
-        <li><p><b>Constituer la patrouille</b>Chaque joueur choisit un prétiré ; il entre dans l'Épos.</p><button class="pill" data-pp="2">Choisir</button></li>
-        <li><p><b>Ouvrir le premier scénario, Clio</b>Onglet ΒΙΒΛΟΙ : ses scènes, ses images, ses trois fins. L'œil montre une scène aux joueurs.</p><button class="pill" data-pp="3">Y aller</button></li>
-        <li><p><b>Faire passer une saison</b>Le bouton « Saison suivante », en haut : vivres, récoltes, crue, un aléa, une visite, une rumeur.</p><button class="pill" data-pp="4">Le voir</button></li>
-        <li><p><b>Comprendre la razzia</b>La fin du Livre I : la cité se défend par vagues, et la patrouille saigne pour elle.</p><button class="pill" data-pp="5">Y aller</button></li>
-      </ol>
-      <div class="pp-livres">${PDF}</div>
-      <p class="note" style="text-align:center">Tout ce que vous faites reste dans ce navigateur : pensez à « Sauvegarder », en haut. Ce guide se rouvre par « Premiers pas ».</p>`;
-    stelePJ({grec:"ΑΡΧΗ",titre:"Premiers pas",sous:"pour le Mnémon qui découvre la campagne",corps:c,fermer:()=>lsSet(CLE+"-premiers","1")});
-    const fermer=()=>{ const d=c.closest("dialog"); if(d) d.close(); };
-    c.querySelectorAll("[data-pp]").forEach(b=>b.onclick=()=>{ const k=b.dataset.pp; fermer();
-      setTimeout(()=>{ try{
-        if(k==="1") ouvrirCite();
-        if(k==="2") constituerPatrouille();
-        if(k==="3"){ aller("livres"); setTimeout(()=>{ const m=document.querySelector(".lv-muse"); if(m) { m.click(); m.scrollIntoView({behavior:"smooth",block:"start"}); } },300); }
-        if(k==="4"){ const s=document.getElementById("btn-saison"); if(s){ scrollTo({top:0,behavior:"smooth"}); s.style.outline="3px solid #C9A227"; s.style.outlineOffset="3px"; setTimeout(()=>{ s.style.outline=""; },4000); } }
-        if(k==="5"){ aller("livres"); setTimeout(()=>{ const a=document.querySelector(".lv-attaque"); if(a) a.scrollIntoView({behavior:"smooth",block:"center"}); },400); }
-      }catch(e){ console.log(e); } },200); });
-  }
-  if(!lsGet(CLE+"-premiers")) setTimeout(premiersPas,1500);
+  /* 7. premiers pas : le guide est celui de la console ; on y ajoute les PDF et la sauvegarde */
+  window.PP_EXTRA=`<div class="pp-livres">${PDF}</div><p class="pp-pied">Tout ce que vous faites reste dans ce navigateur : pensez à « Sauvegarder », dans le bandeau du haut.</p>`;
+  window.ppFerme=()=>lsSet(CLE+"-premiers","1");
+  if(!lsGet(CLE+"-premiers")) setTimeout(()=>{ try{ window.premiersPas(0); }catch(e){} },1500);
 })();
 </script>
 </body>
